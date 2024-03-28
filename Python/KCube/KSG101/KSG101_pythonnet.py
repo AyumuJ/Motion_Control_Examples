@@ -25,11 +25,11 @@ from Thorlabs.MotionControl.KCube.StrainGaugeCLI import *
 def main():
 
     # Uncomment this line if you are using simulation
-    #SimulationManager.Instance.InitializeSimulations()
+    SimulationManager.Instance.InitializeSimulations()
 
     try:
         # Create new device
-        serial_no = str("59500025")
+        serial_no = str("59000002")
 
         DeviceManagerCLI.BuildDeviceList()
         time.sleep(0.25)
@@ -87,7 +87,7 @@ def main():
     except Exception as e:
         print(e)
 
-    #SimulationManager.Instance.UninitializeSimulations()
+    SimulationManager.Instance.UninitializeSimulations()
     return None
 
 

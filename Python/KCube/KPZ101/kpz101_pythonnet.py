@@ -4,6 +4,7 @@ kpz101_pythonnet
 
 An example of using the .NET API with the pythonnet package for controlling a KPZ101
 """
+#%%
 import os
 import time
 import sys
@@ -16,19 +17,19 @@ from Thorlabs.MotionControl.DeviceManagerCLI import *
 from Thorlabs.MotionControl.GenericMotorCLI import *
 from Thorlabs.MotionControl.KCube.PiezoCLI import *
 from System import Decimal  # necessary for real world units
-
+#%%
 def main():
     """The main entry point for the application"""
 
     # Uncomment this line if you are using
-    # SimulationManager.Instance.InitializeSimulations()
+    SimulationManager.Instance.InitializeSimulations()
 
     try:
 
         DeviceManagerCLI.BuildDeviceList()
 
         # create new device
-        serial_no = "26000001"  # Replace this line with your device's serial number
+        serial_no = "29000001"  # Replace this line with your device's serial number
 
         # Connect, begin polling, and enable
         device = KCubePiezo.CreateKCubePiezo(serial_no)
@@ -68,6 +69,7 @@ def main():
 
         if dev_voltage != Decimal(0) and dev_voltage <= max_voltage:
             device.SetOutputVoltage(dev_voltage)
+            print(f'Device voltage is {dev_voltage}')
             time.sleep(1.0)
 
             print(f'Moved to Voltage {device.GetOutputVoltage()}')
@@ -81,9 +83,11 @@ def main():
         print(e)
 
     # Uncomment this line if you are using Simulations
-    # SimulationManager.Instance.UninitializeSimulations()
+    SimulationManager.Instance.UninitializeSimulations()
     ...
 
 
 if __name__ == "__main__":
     main()
+
+# %%
