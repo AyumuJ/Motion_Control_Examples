@@ -68,29 +68,16 @@ def main():
         print(f'Device max travel is {max_travel}')
 
         # Go to a position
-        dev_position = Decimal(10.0)
-        print(f'Going to position {dev_position}')
-        # # Go to a voltage
-        # dev_voltage = Decimal(1.0)
-        # print(f'Going to voltage {dev_voltage}')        
+        step = Decimal(1.00) #um
+        dev_position = Decimal(step)
+        print(f'Going to position {dev_position}')     
 
         if dev_position != Decimal(0) and dev_position <= max_travel:
             device.SetPosition(dev_position)
             print(f'Device position is {dev_position}')
-            time.sleep(10.0)
-
             print(f'Moved to Position {device.GetPosition()}')
         else:
             print(f'Position must be between 0 and {max_travel}')
-
-        # if dev_voltage != Decimal(0) and dev_voltage <= max_voltage:
-        #     device.SetOutputVoltage(dev_voltage)
-        #     print(f'Device voltage is {dev_voltage}')
-        #     time.sleep(1.0)
-
-        #     print(f'Moved to Voltage {device.GetOutputVoltage()}')
-        # else:
-        #     print(f'Voltage must be between 0 and {max_voltage}')
 
         # Stop Polling and Disconnect
         device.StopPolling()
